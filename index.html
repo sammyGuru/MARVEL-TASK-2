@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Task 2</title>
+    <script>
+        function displayStep(index, steps, callback) {
+            if (index < steps.length) {
+                document.getElementById(`step${index + 1}`).textContent = steps[index];
+                setTimeout(() => {
+                    displayStep(index + 1, steps, callback);
+                }, 1000); 
+            } else {
+                if (typeof callback === "function") {
+                    callback();
+                }
+            }
+        }
+
+        function recipe(callback) {
+            const steps = [
+                "Step 1: Heat oil in a pan.",
+                "Step 2: Add cumin seeds and let them splutter.",
+                "Step 3: Add chopped onions and sauté until they turn golden brown.",
+                "Step 4: Add ginger-garlic paste and sauté for a minute.",
+                "Step 5: Add chopped tomatoes and cook until they become soft.",
+                "Step 6: Add spices - turmeric, red chili powder, and garam masala.",
+                "Step 7: Add blanched spinach (palak) and sauté for a few minutes.",
+                "Step 8: Add cubed paneer and cook for a few more minutes.",
+                "Step 9: Serve hot with naan or rice.",
+            ];
+
+            displayStep(0, steps, () => {
+                if (typeof callback === "function") {
+                    callback();
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Learning async JS</h1>
+    <h2>Recipe for Palak Paneer</h2>
+    <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2020/06/palak-paneer-recipe.jpg" alt="palak paneer" width="500px">
+    <br>
+    <br>
+    <div id="button">
+        <button type="button" style="color: green;" onclick="recipe(() => {document.getElementById('step9').innerHTML+= '<br> p.s its purely made with love'})"><i>Show Recipe</i></button>
+    </div>
+    <br><p id="step1"></p>
+    <br><p id="step2"></p>
+    <br><p id="step3"></p>
+    <br><p id="step4"></p>
+    <br><p id="step5"></p>
+    <br><p id="step6"></p>
+    <br><p id="step7"></p>
+    <br><p id="step8"></p>
+    <br><p id="step9"></p>
+</body>
+</html>
